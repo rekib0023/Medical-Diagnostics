@@ -1,0 +1,47 @@
+body {
+  background-color: #faf9f9;
+}
+
+nav a {
+  text-decoration: none !important;
+  border: none;
+}
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+  color: black;
+}
+
+.card-content a {
+  transition: box-shadow 0.3s;
+  border-radius: 10px;
+  border: none;
+}
+
+.card-content a .card:hover {
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+  scale: 1.01;
+}
+
+.card {
+  border: none;
+}
+
+.content-wrap {
+  min-height: 85vh;
+}
+
+.footer {
+  height: 15vh;
+}
+
+.footer a i {
+  padding: 0 8px;
+  font-size: 1.5rem;
+}
+
+.white-icon {
+  color: white !important;
+}

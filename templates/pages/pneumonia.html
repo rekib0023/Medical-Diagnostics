@@ -1,0 +1,19 @@
+{% extends "layout.html" %} {% block content %} 
+<div class="frame content-wrap row justify-content-center">
+  <div class="col-md-6">
+    <h1 class="text-center">{{title}}</h1>
+
+    <form
+      action="/pneumonia"
+      method="post"
+      enctype="multipart/form-data"
+      style="margin-top: 30px; width: 80%; text-align: center; margin: auto;"
+    >
+      <span class="btn btn-default btn-file">
+        Select Image <input type="file" name="image" /> </span
+      ><br /><br />
+      <button type="submit" class="btn btn-info btn-block">Upload</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

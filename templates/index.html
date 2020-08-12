@@ -1,0 +1,49 @@
+{% extends "layout.html" %} {% block content %}
+
+<!-- Landing Area Start -->
+<div class="">
+  <h2>Welcome to the medical-diagnosis:</h2>
+  <p>
+    This is a basic machine learning and deep learning based medical app. The
+    prediction about the disease is made with the help of the machine learning
+    model which itself is trained on the thousands of the datasets
+  </p>
+  <p>Diagnose yourself with just a few clicks!</p>
+  <h4>Overview:</h4>
+  <p>
+    In todays time we see a lot of the shortage of the doctors in the world
+    especially in India.A lot of people are suffering a lot without the help of
+    the proper medical checkup.Also most of the cases many cases arise leading
+    to dealth due to lack of timely medical checkup So to cope up with all of
+    those problems this app is designed which would prove its benefits upto much
+    extent.
+  </p>
+</div>
+<!-- Landing Area End -->
+
+<div class="row row-cols-1 row-cols-md-3">
+  {% for prop in props %}
+  <div class="col mb-4 card-content">
+    <a href={{ prop.slug }}>
+      <div class="card h-100">
+        <img
+          src={{
+          prop.image
+          }}
+          class="card-img-top"
+          alt="..."
+          style="height: 18rem; object-fit: contain;"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ prop.title }}</h5>
+          <p class="card-text">
+            {{ prop.desc }}
+          </p>
+        </div>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
