@@ -17,6 +17,9 @@
 # uploads
 */uploads/*
 
+# Datasets
+datasets/*
+
 # IPython
 profile_default/
 ipython_config.py
