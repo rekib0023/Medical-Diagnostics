@@ -26,13 +26,6 @@ import cancer_config
 import liverdisease_config as liver_config
 from project_config import my_proj
 
-heart_model = joblib.load(filename=heart_config.MODEL_NAME)
-diabetes_model = joblib.load(filename=diabetes_config.MODEL_NAME)
-cancer_model = joblib.load(filename=cancer_config.MODEL_NAME)
-liver_model = joblib.load(filename=liver_config.MODEL_NAME)
-malaria_model = load_model("./models/malaria_model.h5")
-pneumonia_model = load_model("./models/pneumonia_model.h5")
-
 app = Flask(__name__)
 
 UPLOAD_FOLDER = 'uploads'
@@ -57,7 +50,6 @@ def predict_malaria(img_path, model):
 
     return preds
 
-
 @app.route('/malaria', methods=['GET', 'POST'])
 def malaria_disease():
     if request.method == 'GET':
@@ -69,7 +61,6 @@ def malaria_disease():
 
         label = predict_malaria(img_path=full_name, model=malaria_model)
         return render_template('/pages/malaria_predict.html', image_file_name=file.filename, label=label, title="Malaria Disease")
-
 
 def predict_pneumonia(img_path, model):
     img = image.load_img(img_path, target_size=(150, 150))
@@ -89,7 +80,6 @@ def predict_pneumonia(img_path, model):
         preds = "The Person is not Infected With pneumonia"
     return preds
 
-
 @app.route('/pneumonia', methods=['GET', 'POST'])
 def pneumonia_disease():
     if request.method == 'GET':
@@ -101,7 +91,6 @@ def pneumonia_disease():
 
         label = predict_pneumonia(img_path=full_name, model=pneumonia_model)
         return render_template('/pages/pneumonia_predict.html', image_file_name=file.filename, label=label, title="Pneumonia Disease")
-
 
 @app.route('/breast_cancer', methods=['GET', 'POST'])
 def breast_cancer():
@@ -307,4 +296,11 @@ def predict_liver_disease_via_postman():
 
 
 if __name__ == '__main__':
+    print('ki')
+    heart_model = joblib.load(filename=heart_config.MODEL_NAME)
+    diabetes_model = joblib.load(filename=diabetes_config.MODEL_NAME)
+    cancer_model = joblib.load(filename=cancer_config.MODEL_NAME)
+    liver_model = joblib.load(filename=liver_config.MODEL_NAME)
+    malaria_model = load_model("./models/malaria_model.h5")
+    pneumonia_model = load_model("./models/pneumonia_model.h5")
     app.run(debug=True)
