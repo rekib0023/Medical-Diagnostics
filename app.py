@@ -80,18 +80,6 @@ def predict_pneumonia(img_path, model):
         preds = "The Person is not Infected With pneumonia"
     return preds
 
-@app.route('/pneumonia', methods=['GET', 'POST'])
-def pneumonia_disease():
-    if request.method == 'GET':
-        return render_template('/pages/pneumonia.html', title="Pneumonia Disease")
-    else:
-        file = request.files['image']
-        full_name = os.path.join(UPLOAD_FOLDER, file.filename)
-        file.save(full_name)
-
-        label = predict_pneumonia(img_path=full_name, model=pneumonia_model)
-        return render_template('/pages/pneumonia_predict.html', image_file_name=file.filename, label=label, title="Pneumonia Disease")
-
 @app.route('/breast_cancer', methods=['GET', 'POST'])
 def breast_cancer():
     json_data = {}
@@ -232,67 +220,6 @@ def send_file(filename):
 @app.route('/', methods=['GET', 'POST'])
 def home():
     return render_template('index.html', props=my_proj)
-
-
-@app.route('/predict_heart_disease_via_postman', methods=['POST'])
-def predict_heart_disease_via_postman():
-    if request.method == 'POST':
-        json_data = request.get_json()
-        data = pd.DataFrame(json_data, index=[0])
-        data = heart_pp.log_transformer(data, variables=heart_config.LOG_VARIABLES)
-        data = heart_pp.get_dummies(data)
-
-        pred = heart_model.predict(np.array(data.iloc[0]).reshape(1, -1))
-        pred_proba = heart_model.predict_proba(np.array(data.iloc[0]).reshape(1, -1))
-        result = f'{pred} *** {pred_proba}'
-    else:
-        result = "Something went wrong!"
-    return result
-
-
-@app.route('/predict_diabetes_via_postman', methods=['POST'])
-def predict_diabetes_via_postman():
-    if request.method == 'POST':
-        json_data = request.get_json()
-        data = pd.DataFrame(json_data, index=[0])
-
-        pred = diabetes_model.predict(np.array(data.iloc[0]).reshape(1, -1))
-        pred_proba = diabetes_model.predict_proba(np.array(data.iloc[0]).reshape(1, -1))
-        result = f'{pred} *** {pred_proba}'
-    else:
-        result = "Something went wrong!"
-    return result
-
-
-@app.route('/predict_cancer_via_postman', methods=['POST'])
-def predict_cancer_via_postman():
-    if request.method == 'POST':
-        json_data = request.get_json()
-        data = pd.DataFrame(json_data, index=[0])
-
-        pred = cancer_model.predict(np.array(data.iloc[0]).reshape(1, -1))
-        pred_proba = cancer_model.predict_proba(np.array(data.iloc[0]).reshape(1, -1))
-        result = f'{pred} *** {pred_proba}'
-    else:
-        result = "Something went wrong!"
-    return result
-
-
-@app.route('/predict_liver_disease_via_postman', methods=['POST'])
-def predict_liver_disease_via_postman():
-    if request.method == 'POST':
-        json_data = request.get_json()
-        data = pd.DataFrame(json_data, index=[0])
-
-        for var in liver_config.FEATURES:
-            data[var] = np.log1p(data[var])
-
-        pred = liver_model.predict(np.array(data.iloc[0]).reshape(1, -1))
-        pred_proba = liver_model.predict_proba(np.array(data.iloc[0]).reshape(1, -1))
-        result = f'{pred} *** {pred_proba}'
-    else:
-        result = "Something went wrong!"
-    return result
 
 
 if __name__ == '__main__':

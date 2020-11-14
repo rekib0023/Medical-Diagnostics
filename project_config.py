@@ -44,14 +44,6 @@ my_proj = [
                 typically take protective drugs before, during and after their trip. Treatment \
                 includes antimalarial drugs. ",
         "slug": "/malaria ",
-    },
-    {
-        "title": "Pneumonia Detection",
-        "image": "/static/assets/pneumonia.png",
-        "desc": "Pneumonia is an infection in one or both lungs. It can be caused by bacteria, \
-                viruses, or fungi. Bacterial pneumonia is the most common type in adults. \
-                Pneumonia causes inflammation in the air sacs in your lungs, which are called alveoli.",
-        "slug": "/pneumonia ",
     }
 ]
 
